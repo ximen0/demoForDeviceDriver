@@ -1,0 +1,54 @@
+实现platform 设备和驱动
+
+然后在驱动probe函数里实现类设备的注册
+（调用api和platform_device绑定起来）
+
+xxx 是 class 类型
+xxx_classdev 是 class 类型的设备
+
+pdev是probe传入的platform_device * 类型
+pdev->dev 是 device 类型
+
+
+里面调用 xxx_classdev_register(&pdev->dev,&xxx_classdev)
+
+注意了！！！
+
+比如你的platform_device 叫 爷爷
+
+那么注册platform_device 后会在/sys/device/platform/ 
+创建一个文件夹叫 爷爷/
+
+蓝后 你在platform_driver 的probe 函数利用 传入的platform_device 
+
+和你定义的类设备（下面用了led类举例子,这里类设备为ledev,设备name为爸爸）
+（注意我们用的类是内核定义好的）作为参数
+
+调用系统api led_classdev_register(&pdev->dev,&ledev)
+
+蓝后，写好驱动模块。
+
+编译
+
+将两个模块加载到板子上！！！
+
+
+蓝后！！！
+
+你会看到！！！
+
+
+/sys/devices/platform/爷爷/leds/爸爸 
+
+！！！！！！！！！！！！！！！！！！！！！
+
+是不是很兴奋！！！！！！！！！！！！！！！
+
+终于知道为什么platform后面有leds，leds后面有beep那些鬼东西了，原来是在platform_device和类的结合
+
+
+注意！！！！
+
+/sys/class/leds还是会给你创建一个爸爸目录喔！！！！！！！！！！！！！！
+
+所以你有两个地方platform和class可见/操作你注册的类设备
