@@ -1,5 +1,5 @@
 Dir: 
-    -platformtest3: 
+    -platformtest01: 
                   --Platform device driver & class device demo
     ...
 
