@@ -1,5 +1,7 @@
-01 Platform device driver & class device demo
-...
+Dir: 
+    -platformtest3: 
+                  --Platform device driver & class device demo
+    ...
 
 linux version 2.6.35.3
 
